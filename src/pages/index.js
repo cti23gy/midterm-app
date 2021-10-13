@@ -1,6 +1,6 @@
 import * as React from "react";
 import 'semantic-ui-css/semantic.css';
-import { Header, Container, Button, Grid, Segment, Form, Select, List, Label, Modal, Icon } from 'semantic-ui-react';
+import { Menu, Container, Icon, Button, Grid} from 'semantic-ui-react';
 
 import Home from './components/home';
 import Games from './components/games';
@@ -14,54 +14,56 @@ const IndexPage = () => {
 
   function openHome() {
     setHomeOpen(true);
-  }
-  function closeHome() {
-    setHomeOpen(false);
+    setGamesOpen(false);
+    setContactOpen(false);
   }
   function openGames() {
+    setHomeOpen(false);
     setGamesOpen(true);
-  }
-  function closeGames() {
-    setGamesOpen(false);
+    setContactOpen(false);
   }
   function openContact() {
+    setHomeOpen(false);
+    setGamesOpen(false);
     setContactOpen(true);
-  }
-  function closeContact() {
-    setContactOpen(false);
   }
 
   return (
     <React.Fragment>
       <Container>
+      <Menu>
+        <Menu.Item
+          onClick={openHome}
+        >
+          <Icon name="home"/>
+        </Menu.Item>
 
-        <Grid>
-          <Grid.Column width='2'>
-            yes
-          </Grid.Column>
-          <Grid.Column width='2'>
-            h
-          </Grid.Column>
-          <Grid.Column width='12'> 
-          </Grid.Column>
-        </Grid>
+        <Menu.Item
+          onClick={openGames}
+        >
+          <Icon name="gamepad"/>
+        </Menu.Item>
+
+        <Menu.Item
+          onClick={openContact}
+        >
+          <Icon name="users"/>
+        </Menu.Item>
+      </Menu>
         
 
       { HomeOpen ? (
-          <Home 
-            closeHome={closeHome}  
+          <Home  
           />
         ) : null}
 
         {GamesOpen ? (
           <Games 
-            closeGames={closeGames}
           />
         ) : null}
 
         {ContactOpen ? (
-          <Contact 
-            closeContact={closeContact} 
+          <Contact  
           />
         ) : null}
       </Container>
