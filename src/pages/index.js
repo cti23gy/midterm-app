@@ -1,21 +1,71 @@
 import * as React from "react";
 import 'semantic-ui-css/semantic.css';
-import { Header, Container, Button, Grid, Segment, Form, Select, List, Label, Modal, Icon } from 'semantic-ui-react';
+import { Menu, Container, Icon, Button, Grid} from 'semantic-ui-react';
 
+import Home from './components/home';
+import Games from './components/games';
+import Contact from './components/contact';
 
+const IndexPage = () => {
 
-const HomePage = () => {
+  const [HomeOpen, setHomeOpen] = React.useState(false);
+  const [GamesOpen, setGamesOpen] = React.useState(false);
+  const [ContactOpen, setContactOpen] = React.useState(false);
+
+  function openHome() {
+    setHomeOpen(true);
+    setGamesOpen(false);
+    setContactOpen(false);
+  }
+  function openGames() {
+    setHomeOpen(false);
+    setGamesOpen(true);
+    setContactOpen(false);
+  }
+  function openContact() {
+    setHomeOpen(false);
+    setGamesOpen(false);
+    setContactOpen(true);
+  }
 
   return (
     <React.Fragment>
       <Container>
+      <Menu>
+        <Menu.Item
+          onClick={openHome}
+        >
+          <Icon name="home"/>
+        </Menu.Item>
+
+        <Menu.Item
+          onClick={openGames}
+        >
+          <Icon name="gamepad"/>
+        </Menu.Item>
+
+        <Menu.Item
+          onClick={openContact}
+        >
+          <Icon name="users"/>
+        </Menu.Item>
+      </Menu>
         
 
-        <Label
-                    /*New Icon for marking end of List*/
-        > 
-          <Icon name='angle double right' />This marks the end of the list.
-        </Label>
+      { HomeOpen ? (
+          <Home  
+          />
+        ) : null}
+
+        {GamesOpen ? (
+          <Games 
+          />
+        ) : null}
+
+        {ContactOpen ? (
+          <Contact  
+          />
+        ) : null}
       </Container>
       
       
@@ -23,4 +73,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default IndexPage;
